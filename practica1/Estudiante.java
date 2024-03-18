@@ -25,7 +25,7 @@ public class Estudiante extends Persona{
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	public String toString() {
+	public String tusDatos() {
 		String aux;
 		aux = super.toString() + " comision " + getComision()
 			  + " direccion " + getDireccion();

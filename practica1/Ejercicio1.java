@@ -2,22 +2,7 @@ package practica1;
 import java.util.Scanner;
 
 public class Ejercicio1 {
-	
-	public static void main(String[] args) {
-        Scanner escaner = new Scanner(System.in) ;
-        System.out.print("Ingrese un nro: ");
-        int a = escaner.nextInt();
-
-        System.out.print("Ingrese otro nro: ");
-        int b = escaner.nextInt();
-        imprimirFor(a,b);
-        System.out.println();
-        imprimirWhile(a, b);
-        System.out.println();
-        imprimir(a, b);
-        escaner.close();
-    }
-	
+		
 	public static void imprimirFor(int a, int b) {
 		for(int i = a + 1; i < b; i++) {
 			System.out.println(i);
@@ -39,4 +24,19 @@ public class Ejercicio1 {
 			imprimir(a,b);
 		}
 	}
+	
+	public static void main(String[] args) {
+        Scanner escaner = new Scanner(System.in) ;
+        System.out.print("Ingrese un nro: ");
+        int a = escaner.nextInt();
+
+        System.out.print("Ingrese otro nro: ");
+        int b = escaner.nextInt();
+        imprimirFor(a,b);
+        System.out.println();
+        imprimirWhile(a, b);
+        System.out.println();
+        imprimir(a, b);
+        escaner.close();
+    }
 }

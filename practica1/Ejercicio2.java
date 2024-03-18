@@ -2,6 +2,15 @@ package practica1;
 import java.util.Scanner;
 
 public class Ejercicio2 {
+	
+	public static int [] devolverVector(int n) {
+		int [] vector = new int[n];
+		for(int i = 0; i < n; i++) {
+			vector[i] = (i+1) * n;
+		}
+	return vector;
+	}
+	
 	public static void main (String[]args) {
 		Scanner escanner = new Scanner(System.in);
 		System.out.println("Ingrese un numero");
@@ -11,13 +20,5 @@ public class Ejercicio2 {
 			System.out.println(i);
 		}
         escanner.close();
-	}
-	
-	public static int [] devolverVector(int n) {
-		int [] vector = new int[n];
-		for(int i = 0; i < n; i++) {
-			vector[i] = (i+1) * n;
-		}
-	return vector;
 	}
 }

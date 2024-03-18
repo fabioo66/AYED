@@ -21,7 +21,7 @@ public class Profesor extends Persona{
 	public void setFacultad(String facultad) {
 		this.facultad = facultad;
 	}
-	public String toString() {
+	public String tusDatos() {
 		String aux;
 		aux = super.toString() + " catedra " + getCatedra() +
 			  " facultad " + getFacultad();
