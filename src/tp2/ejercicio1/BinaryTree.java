@@ -75,8 +75,11 @@ public class BinaryTree <T> {
 	}
 
 	public  int contarHojas() {
-	   
-		return 0;
+	    if(isEmpty()) {
+	    	return 0;
+	    }else {
+	    	return 500;
+	    }
 	}
 		
 		
