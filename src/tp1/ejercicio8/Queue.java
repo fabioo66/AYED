@@ -3,7 +3,7 @@ package tp1.ejercicio8;
 import java.util.*;
 
 public class Queue<T> extends Sequence{
-	List<T> data;
+	protected List<T> data; //sin portected estas clases son accesibles para cualquier paquete
 	
 	public Queue() {
 		this.data = new ArrayList<T>();

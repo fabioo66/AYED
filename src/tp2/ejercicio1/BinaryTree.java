@@ -75,10 +75,17 @@ public class BinaryTree <T> {
 	}
 
 	public  int contarHojas() {
-	    if(isEmpty()) {
+	    if(isLeaf()) {
 	    	return 0;
 	    }else {
-	    	return 500;
+	    	int hojas = 0;
+	    	if(hasLeftChild()) {
+	    		hojas += getLeftChild().contarHojas();
+	    	}
+	    	if(hasRightChild()) {
+	    		hojas += getRightChild().contarHojas();
+	    	}
+	    	return hojas;
 	    }
 	}
 		
