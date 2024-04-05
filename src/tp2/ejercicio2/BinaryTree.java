@@ -1,4 +1,4 @@
-package tp2.ejercicio1;
+package tp2.ejercicio2;
 
 public class BinaryTree <T> {
 	
@@ -75,13 +75,27 @@ public class BinaryTree <T> {
 	}
 
 	public  int contarHojas() {
-	    return 0;
+	    if(isEmpty()) {
+	    	return 0;
+	    }
+	    if(isLeaf()) {
+	    	return 1;
+	    }else {
+	    	int hojas = 0;
+	    	if(hasLeftChild()) {
+	    		hojas += getLeftChild().contarHojas();
+	    	}
+	    	if(hasRightChild()) {
+	    		hojas += getRightChild().contarHojas();
+	    	}
+	    	return hojas;
+	    }
 	}
 		
 		
     	 
     public BinaryTree<T> espejo(){
-		       		  
+    	
  	   return null;
     }
 
