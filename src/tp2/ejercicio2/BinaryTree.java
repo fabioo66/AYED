@@ -1,4 +1,5 @@
 package tp2.ejercicio2;
+import tp1.ejercicio8.Queue;
 
 public class BinaryTree <T> {
 	
@@ -83,25 +84,87 @@ public class BinaryTree <T> {
 	    }else {
 	    	int hojas = 0;
 	    	if(hasLeftChild()) {
-	    		hojas += getLeftChild().contarHojas();
+	    		hojas += this.getLeftChild().contarHojas();
 	    	}
 	    	if(hasRightChild()) {
-	    		hojas += getRightChild().contarHojas();
+	    		hojas += this.getRightChild().contarHojas();
 	    	}
 	    	return hojas;
 	    }
 	}
 		
-		
-    	 
     public BinaryTree<T> espejo(){
-    	
- 	   return null;
+    	if (this.isEmpty()) {
+    		return null;
+    	} else {
+            BinaryTree<T> espejin = new BinaryTree<T>(this.data);
+
+            if (this.hasLeftChild()) {
+                espejin.addRightChild(this.getLeftChild().espejo());
+            }
+            if (this.hasRightChild()) {
+                espejin.addLeftChild(this.getRightChild().espejo());
+            }
+
+            return espejin;
+        }
     }
 
 	// 0<=n<=m
 	public void entreNiveles(int n, int m){
-		
-   }
-		
+		return;
+	}		
+	
+	public void printPreOrden() {
+		System.out.println(this.getData());
+		if (this.hasLeftChild()) {
+			this.getLeftChild().printPreOrden();
+		}
+		if (this.hasRightChild()) {
+			this.getRightChild().printPreOrden();
+		}
+	}
+	
+	public void printInOrden() {
+		if (this.hasLeftChild()) {
+			this.getLeftChild().printInOrden();
+		}
+		System.out.println(this.getData());
+		if (this.hasRightChild()) {
+			this.getRightChild().printInOrden();
+		}
+	}
+	
+	public void printPostOrden() {
+		if (this.hasLeftChild()) {
+			this.getLeftChild().printPostOrden();
+		}
+		if (this.hasRightChild()) {
+			this.getRightChild().printPostOrden();
+		}
+		System.out.println(this.getData());
+	}
+	
+	public void printLevelTraversal() {
+		BinaryTree<T> ab = null;
+		Queue<BinaryTree<T>> cola = new Queue<BinaryTree<T>>();
+		cola.enqueue(this);
+		cola.enqueue(null);
+		while (!cola.isEmpty()) {
+			ab = cola.dequeue();
+		    if (ab != null) {
+		    	System.out.print(ab.getData());
+		    	if (ab.hasLeftChild()) {
+		    		cola.enqueue(ab.getLeftChild());
+		    	}
+		    	if (ab.hasRightChild()) {
+		    		cola.enqueue(ab.getRightChild());
+		    	}
+		    } else if (!cola.isEmpty()) {
+		    	System.out.println();
+		    	cola.enqueue(null);
+		    }
+		}
+	}
+
 }
