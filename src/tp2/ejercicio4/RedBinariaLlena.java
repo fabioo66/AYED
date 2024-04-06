@@ -18,6 +18,8 @@ public class RedBinariaLlena {
 		int right = 0;
 		if(ab.isEmpty()) {
 			return 0;
+		} else if (ab.isLeaf()) {
+	        return ab.getData();
 		}else {
 			if(ab.hasLeftChild()) {
 				left = retardin(ab.getLeftChild());
