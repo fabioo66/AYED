@@ -18,7 +18,7 @@ public class RedBinariaLlena {
 		int right = 0;
 		if(ab.isEmpty()) {
 			return 0;
-		} else if (ab.isLeaf()) {
+		}else if (ab.isLeaf()) {
 	        return ab.getData();
 		}else {
 			if(ab.hasLeftChild()) {
@@ -34,5 +34,23 @@ public class RedBinariaLlena {
 			}
 		}
 		
+	}
+	
+	public static void main(String[] args) {
+		BinaryTree<Integer> ab = new BinaryTree<Integer>(40);
+		BinaryTree<Integer> hijoIzquierdo = new BinaryTree<Integer>(25);
+		BinaryTree<Integer> hijoDerecho = new BinaryTree<Integer>(78);
+		
+		hijoIzquierdo.addLeftChild(new BinaryTree<Integer>(10));
+		hijoIzquierdo.addRightChild(new BinaryTree<Integer>(332));
+		
+		hijoDerecho.addLeftChild(new BinaryTree<Integer>(20));
+		hijoDerecho.addRightChild(new BinaryTree<Integer>(50));
+		
+		ab.addLeftChild(hijoIzquierdo);
+		ab.addRightChild(hijoDerecho);
+		
+		RedBinariaLlena red = new RedBinariaLlena(ab);
+		System.out.print(red.retardoReenvio());
 	}
 }
