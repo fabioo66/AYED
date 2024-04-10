@@ -111,9 +111,39 @@ public class BinaryTree <T> {
     }
 
 	// 0<=n<=m
-	public void entreNiveles(int n, int m){
-		return;
-	}		
+	public void entreNiveles(int n, int m) {
+		if(this.isEmpty()) {
+			System.out.println("El arbol esta vacio");
+		}else if(n > m) {
+			System.out.println("no cumple con el formato dado");
+		}else {
+			BinaryTree<T> ab = null;
+			Queue<BinaryTree<T>> cola = new Queue<BinaryTree<T>>();
+			cola.enqueue(this);
+			cola.enqueue(null);
+			int level = 0;
+			while (!cola.isEmpty()) {
+				ab = cola.dequeue();
+				if (ab != null) {
+					if(n <= level && m >= level) {
+						System.out.print(ab.getData() + " ");
+					}
+					if (ab.hasLeftChild()) {
+						cola.enqueue(ab.getLeftChild());
+					}
+					if (ab.hasRightChild()) {
+						cola.enqueue(ab.getRightChild());
+					}
+				} else if (!cola.isEmpty()){
+					System.out.println();
+					cola.enqueue(null);
+					level ++;
+				}	
+			}
+			
+		}
+	}
+				
 	
 	public void printPreOrden() {
 		System.out.println(this.getData());
@@ -153,7 +183,7 @@ public class BinaryTree <T> {
 		while (!cola.isEmpty()) {
 			ab = cola.dequeue();
 		    if (ab != null) {
-		    	System.out.print(ab.getData());
+		    	System.out.print(ab.getData() + " ");
 		    	if (ab.hasLeftChild()) {
 		    		cola.enqueue(ab.getLeftChild());
 		    	}
@@ -165,6 +195,7 @@ public class BinaryTree <T> {
 		    	cola.enqueue(null);
 		    }
 		}
+		System.out.println();
 	}
 
 }
