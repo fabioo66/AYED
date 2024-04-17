@@ -9,16 +9,16 @@ import tp3.ejercicio1.GeneralTree;
 
 public class RecorridosAG {
 	public List<Integer> numerosImparesMayoresQuePreOrden (GeneralTree <Integer> a, Integer n){
-		ArrayList<Integer> lista = new ArrayList<Integer>();
-		if(!a.isEmpty() && a.getData() != null) {
+		List<Integer> lista = new ArrayList<Integer>();
+		if(!a.isEmpty()) {
 			preOrder(a, n, lista);
 			return lista;
 		}else {
-			return null;
+			return lista;
 		}
 	}
 	
-	private void preOrder(GeneralTree <Integer> ab, Integer n, ArrayList <Integer> lista) {
+	private void preOrder(GeneralTree <Integer> ab, Integer n, List <Integer> lista) {
 		if(ab.getData() % 2 != 0 && ab.getData() > n);
 			lista.add(ab.getData());
 		List<GeneralTree<Integer>> children = ab.getChildren();
@@ -29,37 +29,44 @@ public class RecorridosAG {
 	
 	public List<Integer> numerosImparesMayoresQueInOrden (GeneralTree <Integer> a, Integer n){
 		ArrayList<Integer> lista = new ArrayList<Integer>();
-		if(!a.isEmpty() && a.getData() != null) {
+		if(!a.isEmpty()) {
 			inOrder(a, n, lista);
 			return lista;
 		}else {
-			return null;
+			return lista;
 		}
 	}
 	
 	private void inOrder(GeneralTree <Integer> ab, Integer n, ArrayList <Integer> lista) {
 		List<GeneralTree<Integer>> children = ab.getChildren();
-		if(ab.getData() % 2 != 0 && ab.getData() > n);
+		// Primer hijo
+		if(ab.hasChildren()){
+			inOrder(ab, n, lista);
+		}
+		//procesa la raiz
+		if(ab.getData() % 2 != 0 && ab.getData() > n) {
 			lista.add(ab.getData());
-		for (GeneralTree<Integer> child: children) {
-			inOrder(child, n, lista);
+		}
+		// hijos restantes
+		for (int i = 1; i < children.size(); i++) {
+			inOrder(ab, n, lista);
 		}
 	}
 	
 	public List<Integer> numerosImparesMayoresQuePostOrden (GeneralTree <Integer> a, Integer n){
-		ArrayList<Integer> lista = new ArrayList<Integer>();
+		List<Integer> lista = new ArrayList<Integer>();
 		if(!a.isEmpty() && a.getData() != null) {
 			postOrder(a, n, lista);
 			return lista;
 		}else {
-			return null;
+			return lista;
 		}
 	}
 	
-	private void postOrder(GeneralTree <Integer> ab, Integer n, ArrayList <Integer> lista) {
+	private void postOrder(GeneralTree <Integer> ab, Integer n, List <Integer> lista) {
 		List<GeneralTree<Integer>> children = ab.getChildren();
 		for (GeneralTree<Integer> child: children) {
-			inOrder(child, n, lista);
+			postOrder(child, n, lista);
 		}
 		if(ab.getData() % 2 != 0 && ab.getData() > n);{
 			lista.add(ab.getData());
@@ -67,16 +74,16 @@ public class RecorridosAG {
 	}
 	
 	public List<Integer> numerosImparesMayoresQuePorNiveles(GeneralTree <Integer> a, Integer n){
-		ArrayList<Integer> lista = new ArrayList<Integer>();
-		if(!a.isEmpty() && a.getData() != null) {
+		List<Integer> lista = new ArrayList<Integer>();
+		if(!a.isEmpty() && a != null) {
 			porNiveles(a, n, lista);
 			return lista;
 		}else {
-			return null;
+			return lista;
 		}
 	}
 	
-	private void porNiveles(GeneralTree <Integer> ab, Integer n, ArrayList <Integer> lista) {
+	private void porNiveles(GeneralTree <Integer> ab, Integer n, List <Integer> lista) {
 		GeneralTree<Integer> tree_aux;
 		
 		Queue<GeneralTree<Integer>> queue = new Queue<GeneralTree<Integer>>();
