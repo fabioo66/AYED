@@ -2,6 +2,8 @@ package tp3.ejercicio3;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import tp1.ejercicio8.Queue;
 import tp3.ejercicio3.GeneralTree;
 
 public class GeneralTree<T>{
@@ -72,11 +74,54 @@ public class GeneralTree<T>{
 	}
 	
 	public int nivel(T dato){
-		return 0;
+		Queue<GeneralTree<T>> cola = new Queue<GeneralTree<T>>();
+		cola.enqueue(this);
+		cola.enqueue(null);
+		int nivel = 0;
+		boolean encontre = false;
+		while(!cola.isEmpty() && !encontre) {
+			GeneralTree<T> actual = cola.dequeue();
+			if(actual != null && !encontre) {
+				if(actual.getData() == dato) {
+					encontre = true;
+				}
+				for(GeneralTree<T> e : actual.getChildren()) {
+					cola.enqueue(e);
+				}
+			}else {
+				if(!cola.isEmpty()) {
+					cola.enqueue(null);
+					nivel ++;
+				}
+			}
+		}
+		if(!encontre) {
+			return -1;
+		}else {
+			return nivel;
+		}
 	  }
 
 	public int ancho(){
-		
-		return 0;
+		Queue<GeneralTree<T>> cola = new Queue<GeneralTree<T>>();
+		cola.enqueue(this);
+		cola.enqueue(null);
+		int cant = 0, max = 0;
+		while(!cola.isEmpty()) {
+			GeneralTree<T> actual = cola.dequeue();
+			if(actual != null) {
+				for(GeneralTree<T> e : actual.getChildren()) {
+					cola.enqueue(e);
+					cant++;
+				}
+			}else {
+				if(!cola.isEmpty()) {
+					if(cant > max) max = cant;
+					cant = 0;
+					cola.enqueue(null);
+				}
+			}
+		}
+		return max;
 	}
 }
