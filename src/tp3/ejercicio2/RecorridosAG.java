@@ -19,8 +19,9 @@ public class RecorridosAG {
 	}
 	
 	private void preOrder(GeneralTree <Integer> ab, Integer n, List <Integer> lista) {
-		if(ab.getData() % 2 != 0 && ab.getData() > n);
+		if(ab.getData() % 2 != 0 && ab.getData() > n) {
 			lista.add(ab.getData());
+		}
 		List<GeneralTree<Integer>> children = ab.getChildren();
 		for (GeneralTree<Integer> child: children) {
 			preOrder(child, n, lista);
@@ -68,7 +69,7 @@ public class RecorridosAG {
 		for (GeneralTree<Integer> child: children) {
 			postOrder(child, n, lista);
 		}
-		if(ab.getData() % 2 != 0 && ab.getData() > n);{
+		if(ab.getData() % 2 != 0 && ab.getData() > n){
 			lista.add(ab.getData());
 		}
 	}
