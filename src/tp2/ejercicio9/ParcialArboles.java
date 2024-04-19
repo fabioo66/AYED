@@ -26,8 +26,7 @@ public class ParcialArboles {
 		if (arbol.hasRightChild()) {
 			der = sumAndDif(arbol.getRightChild(), suma + arbol.getData(), arbol.getData());
 		}
-		Data data = new Data(suma + arbol.getData(), arbol.getData() - padre); 
-        BinaryTree<Data> arbolData = new BinaryTree<Data>(data);
+        BinaryTree<Data> arbolData = new BinaryTree<Data>(new Data(suma + arbol.getData(), arbol.getData() - padre));
 		arbolData.addLeftChild(izq);
 		arbolData.addRightChild(der);
 		return arbolData;
