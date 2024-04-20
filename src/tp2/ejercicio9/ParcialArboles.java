@@ -8,11 +8,8 @@ public class ParcialArboles {
 		BinaryTree<Data> abNuevo = new BinaryTree<Data>();
 		if(!arbol.isEmpty() && arbol != null) {
 			abNuevo = sumAndDif(arbol, 0, 0);
-			return abNuevo;
-		}else {
-			
-			return abNuevo;
 		}
+		return abNuevo;
 	}
 	
 	private BinaryTree<Data> sumAndDif(BinaryTree<Integer> arbol, int suma, int padre){
