@@ -124,23 +124,26 @@ public class GeneralTree<T>{
 	}
 	
 	public boolean esAncestro(T a, T b) {
-		GeneralTree<T> abNuevo = buscarNodo(this, a);
-		if(abNuevo != null) {
-			if(buscarNodo(abNuevo, b) != null) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	private GeneralTree<T> buscarNodo(GeneralTree<T> ab, T a){
-		if(ab.getData() == a) {
-			return ab;
-		}
-		List<GeneralTree<T>> children = ab.getChildren();
-		for (GeneralTree<T> child: children) {
-			buscarNodo(child, a);
-		}
-		return null;
-	}
+    	GeneralTree<T> subArbol = buscarNodo(this,a);
+    	boolean result = false;
+    	if (subArbol != null) 
+    		result = (buscarNodo(subArbol,b) != null);
+    	return result;
+    }
+    
+    private GeneralTree<T> buscarNodo(GeneralTree<T> arbol , T dato) { 
+    	GeneralTree<T> subArbol = null;
+    	if (arbol.getData().equals(dato)) {
+    		subArbol = arbol;
+    	}else {
+    		if (!arbol.isLeaf()) {
+    			List<GeneralTree<T>> children = arbol.getChildren();
+    			for (GeneralTree<T> child: children) {
+    				subArbol = buscarNodo(child,dato);
+    				if (subArbol != null) return arbol;
+    			}
+    		}
+    	}
+    	return subArbol;    		
+    }
 }
