@@ -140,7 +140,7 @@ public class GeneralTree<T>{
     			List<GeneralTree<T>> children = arbol.getChildren();
     			for (GeneralTree<T> child: children) {
     				subArbol = buscarNodo(child,dato);
-    				if (subArbol != null) return arbol;
+    				if (subArbol != null) return subArbol;
     			}
     		}
     	}
