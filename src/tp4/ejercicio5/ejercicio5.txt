@@ -1,0 +1,24 @@
+a. Analizar si todos los algoritmos terminan o alguno puede quedar en loop infinito.
+
+- Todos los algoritmos terminan, ninguno queda en loop infinito.
+
+b. Describa con palabras la cantidad de operaciones que realizan.
+
+- public static int[] randomUno(int n)
+    - Se hace un for desde i = 0 hasta i < n 
+    - Se hace while hasta generar un valor que no se encuentra en el array
+    - Al salir del while se agrega el numero en la posicion i
+
+- public static int[] randomDos(int n)
+    - Se crea dos vectores, uno con los numero y otro de booleanos.
+    - Se inicializa el vector de booleanos en false.
+    - Se recorre todo el vector de numeros.
+    - Dentro del for:
+        - Se genera un numero random.
+        - Si ese numero se encuentra en el vector de booleanos(T) se genera otro numero.
+        - Sino se encuentra se guarda el numero generado en la posicion i del vector.
+        - Se actualiza el valor del vector de booleanos en true en la posicion del numero generado.
+
+- public static int[] randomTres(int n)
+    - Se recorre un for desde i hasta n inicializando vector de resultados con un valor correspondiente a su posición.
+    - Se recorre un for desde i hasta n intercambia lo que está en el vector de resultados con otro valor en una posición random (de lo que llevo recorrido).
