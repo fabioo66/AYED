@@ -1,0 +1,4 @@
+T(n) = 3^n 
+¿T(n) es de O(2^n)?
+
+3^n <= c * 2^n para todo n <= 1
