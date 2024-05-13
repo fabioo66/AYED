@@ -1,0 +1,18 @@
+Ejercicio 3
+En la documentación de la clase arrayList que se encuentra en el siguiente link
+https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html
+Se encuentran las siguientes afirmaciones
+● "The size, isEmpty, get, set, iterator, and listIterator operations run in constant time.”
+● “All of the other operations run in linear time (roughly speaking)”
+Explique con sus palabras por qué cree que algunas operaciones se ejecutan en tiempo constante y
+otras en tiempo lineal.
+
+- En el caso de las operaciones que se ejecutan en tiempo constante, como size, isEmpty, get, set, iterator y listIterator, 
+esto significa que el tiempo necesario para realizar estas operaciones no aumenta a medida que crece el tamaño de la lista. 
+Esto se debe a que estas operaciones acceden directamente a la información sin importar cuántos elementos haya en la lista. 
+Por ejemplo, size simplemente devuelve el número de elementos en la lista, independientemente de cuán grande sea la lista.
+
+- Por otro lado, las operaciones que se ejecutan en tiempo lineal, como add, remove y contains, tienen un tiempo de ejecución 
+proporcional al número de elementos en la lista. Esto significa que a medida que la lista crece, también lo hace el tiempo necesario 
+para completar estas operaciones. Por ejemplo, para agregar un elemento a una lista, el tiempo que lleva dependerá del tamaño actual 
+de la lista, ya que podría requerir reorganizar los elementos existentes para hacer espacio para el nuevo.
