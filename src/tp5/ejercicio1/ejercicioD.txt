@@ -1,0 +1,12 @@
+d) Dada la interfaz Edge previa. ¿Es  posible utilizarla  para implementar  grafos ponderados como no ponderados? 
+Analice el comportamiento de los métodos que componen la misma.
+
+Si, la interfaz Edge<T> es flexible y puede ser utilizada para implementar tanto grafos ponderados como no ponderados. 
+Su comportamiento puede variar dependiendo del contexto de la implementación, pero proporciona los métodos necesarios para 
+trabajar con aristas en cualquier tipo de grafo.
+
+El método getTarget() siempre será útil en cualquier tipo de grafo, ya que permite obtener el vértice destino de la arista, 
+independientemente de si el grafo es ponderado o no ponderado.
+
+El método getWeight() devolverá el peso real de cada arista, que puede variar según la aplicación. Este peso puede representar 
+distancias, costos, tiempos, o cualquier otra métrica relevante para el problema que se esté resolviendo.
