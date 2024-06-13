@@ -19,25 +19,24 @@ public class BuscadorDeCaminos {
 		List<List<String>> caminos = new LinkedList<List<String>>();
 		if (!this.bosque.isEmpty()) {
 			Vertex<String> casaCaperucita = this.bosque.search("Casa Caperucita");
-			Vertex<String> casaAbuelita = this.bosque.search("Casa Abuelita");
-			if (casaCaperucita != null && casaAbuelita != null) {
-				dfs(casaCaperucita, casaAbuelita, new boolean [this.bosque.getSize()], caminos, new LinkedList<String>());
+			if (casaCaperucita != null) {
+				dfs(casaCaperucita, new boolean [this.bosque.getSize()], caminos, new LinkedList<String>());
 			}
 		}
 		return caminos;
 	}
 	
-	private void dfs(Vertex<String> casaCaperucita, Vertex<String> casaAbuelita, boolean [] visitados, List<List<String>> caminos, LinkedList<String> caminoActual) {
+	private void dfs(Vertex<String> casaCaperucita, boolean [] visitados, List<List<String>> caminos, LinkedList<String> caminoActual) {
 		visitados[casaCaperucita.getPosition()] = true;
 		caminoActual.add(casaCaperucita.getData());
 		
-		if (casaCaperucita == casaAbuelita) {
+		if (casaCaperucita.getData().equals("Casa Abuelita")) {
 			caminos.add(new LinkedList<String>(caminoActual));
 		}else {
 			for (Edge<String> edge : this.bosque.getEdges(casaCaperucita)) {
 				Vertex<String> vertex = edge.getTarget();
 				if(!visitados[vertex.getPosition()] && edge.getWeight() < 5) {
-					dfs(vertex, casaAbuelita, visitados, caminos, caminoActual);
+					dfs(vertex, visitados, caminos, caminoActual);
 				}
 			}
 		}
