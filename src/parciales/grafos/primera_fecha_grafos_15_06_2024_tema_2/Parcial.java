@@ -13,11 +13,8 @@ public class Parcial {
         if (!sitios.isEmpty()){
             Vertex<Recinto> origen = buscarOrigen(sitios);
             
-            if (origen != null){
-                int tiempoRestante = tiempo - origen.getData().getMinutos();
-                if (tiempoRestante >= 0) {
-                    ok = esAlcanzable(sitios, origen, new LinkedList<Recinto>(), new boolean[sitios.getSize()], tiempoRestante);
-                }
+            if (origen != null && tiempo - origen.getData().getMinutos() >= 0){
+                ok = esAlcanzable(sitios, origen, new LinkedList<Recinto>(), new boolean[sitios.getSize()], tiempo - origen.getData().getMinutos());
             }
         }
         if (ok){
@@ -41,33 +38,6 @@ public class Parcial {
         return vertice;
     }
 
-    /*private boolean esAlcanzable(Graph<Recinto> sitios, Vertex<Recinto> origen, List<Recinto> camino, boolean [] visitados, int tiempo){
-        boolean ok = false;
-        int tiempoRestante = tiempo - origen.getData().getMinutos();
-        if (tiempoRestante >= 0){
-            visitados[origen.getPosition()] = true;
-            camino.add(origen.getData());
-        }
-        if (camino.size() == sitios.getSize()){
-            ok = true;
-        }else {
-            List<Edge<Recinto>> edges = sitios.getEdges(origen);
-            Iterator<Edge<Recinto>> iter = edges.iterator();
-            while (iter.hasNext() && !ok){
-                Edge<Recinto> arista = iter.next();
-                if (!visitados[arista.getTarget().getPosition()] && tiempoRestante - arista.getWeight()>= 0){
-                    ok = esAlcanzable(sitios, arista.getTarget(), camino, visitados, tiempo - arista.getWeight());
-                }
-            }
-        }
-        if (!ok){
-            visitados[origen.getPosition()] = false;
-            camino.remove(camino.size()-1);
-        }
-        return ok;
-    }*/
-
-
     private boolean esAlcanzable(Graph<Recinto> sitios, Vertex<Recinto> origen, List<Recinto> camino, boolean [] visitados, int tiempo){
         boolean ok = false;
         visitados[origen.getPosition()] = true;
@@ -79,8 +49,9 @@ public class Parcial {
             Iterator<Edge<Recinto>> iter = edges.iterator();
             while (iter.hasNext() && !ok){
                 Edge<Recinto> arista = iter.next();
-                if (!visitados[arista.getTarget().getPosition()] && tiempo - (arista.getWeight() + arista.getTarget().getData().getMinutos()) >= 0){
-                    ok = esAlcanzable(sitios, arista.getTarget(), camino, visitados, tiempo - (arista.getWeight() + arista.getTarget().getData().getMinutos()));
+                int tiempoEmpleado = arista.getWeight() + arista.getTarget().getData().getMinutos();
+                if (!visitados[arista.getTarget().getPosition()] && tiempo - tiempoEmpleado >= 0){
+                    ok = esAlcanzable(sitios, arista.getTarget(), camino, visitados, tiempo - tiempoEmpleado);
                 }
             }
         }
@@ -104,8 +75,8 @@ public class Parcial {
         
         grafo.connect(Entrada, Cebras, 10);
         grafo.connect(Cebras, Entrada, 10);
-        grafo.connect(Entrada, Tigres, 10);
-        grafo.connect(Tigres, Entrada, 10);
+        grafo.connect(Entrada, Tigres, 15);
+        grafo.connect(Tigres, Entrada, 15);
         grafo.connect(Entrada, Murcielagos, 20);
         grafo.connect(Murcielagos, Entrada, 20);
         grafo.connect(Entrada, Flamencos, 25);
@@ -113,8 +84,8 @@ public class Parcial {
         
         grafo.connect(Tigres, Cebras, 8);
         grafo.connect(Cebras, Tigres, 8);
-        grafo.connect(Cebras, Tortugas, 10);
-        grafo.connect(Tortugas, Cebras, 10);
+        grafo.connect(Cebras, Tortugas, 5);
+        grafo.connect(Tortugas, Cebras, 5);
         grafo.connect(Flamencos, Murcielagos, 25);
         grafo.connect(Murcielagos, Flamencos, 25);
         grafo.connect(Murcielagos, Wallabies, 10);
@@ -123,10 +94,14 @@ public class Parcial {
         grafo.connect(Tortugas, Wallabies, 10);
         grafo.connect(Tortugas, Pumas, 15);
         grafo.connect(Pumas, Tortugas, 15);
+        grafo.connect(Pumas, Wallabies, 2);
+        grafo.connect(Wallabies, Pumas, 2);
         
         Parcial p = new Parcial();
         
         System.out.println(p.resolver(grafo, 220));
+        System.out.println(p.resolver(grafo, 205));
+        System.out.println(p.resolver(grafo, 195));
         System.out.println(p.resolver(grafo, 100));
     }
 }
