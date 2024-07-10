@@ -8,18 +8,22 @@ public class Parcial {
     public List<GeneralTree<Integer>> resolver(GeneralTree<Integer> arbol){
         List<GeneralTree<Integer>> lista = new LinkedList<GeneralTree<Integer>>();
         if (!arbol.isEmpty()){
-            resolver(arbol, lista);
+            inOrden(arbol, lista);
         }
         return lista;
     }  
 
-    public void resolver(GeneralTree<Integer> arbol, List<GeneralTree<Integer>> lista){
-        if (!arbol.isLeaf() && arbol.getChildren().size() % 2 == 0){
+    private void inOrden(GeneralTree<Integer> arbol, List<GeneralTree<Integer>> lista){
+        List<GeneralTree<Integer>> children = arbol.getChildren();
+        if (arbol.hasChildren()){
+            inOrden(children.getFirst(), lista);
+        }
+        if (!arbol.isLeaf() && children.size() % 2 == 0){
             lista.add(arbol);
-        }else{
-            List<GeneralTree<Integer>> children = arbol.getChildren();
-            for (GeneralTree<Integer> child : children){
-                resolver(child);
+        }
+        for (int i = 1; i < children.size(); i++){
+            if (!children.get(i).isLeaf()){
+                inOrden(children.get(i), lista);
             }
         }
     }
