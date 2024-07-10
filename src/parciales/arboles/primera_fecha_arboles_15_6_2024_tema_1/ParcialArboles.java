@@ -4,36 +4,37 @@ import tp3.ejercicio1.GeneralTree;
 import java.util.*;
 
 public class ParcialArboles {
-    GeneralTree<Integer> arbol = new GeneralTree<>();
+    private GeneralTree<Integer> arbol;
 
-    public ParcialArboles(GeneralTree<Integer> arbol) {
+    public ParcialArboles(GeneralTree<Integer> arbol){
         this.arbol = arbol;
     }
 
-    public List<Integer> camino (int num){
-        List<Integer> caminito = new LinkedList<>();
+    public List<Integer> camino(int num){
+        List<Integer> lista = new LinkedList<>();
         if (!this.arbol.isEmpty()){
-            procesar(this.arbol, caminito, num);
+            procesar(this.arbol, lista, num);
         }
-        return caminito;
+        return lista;
     }
 
-    private boolean procesar(GeneralTree<Integer> arbol, List<Integer> caminoActual, int num){
+    private boolean procesar(GeneralTree<Integer> arbol, List<Integer> lista, int num){
         boolean ok = false;
-        if (!arbol.isLeaf() && arbol.getChildren().size() >= num){
-            caminoActual.add(arbol.getData());
-            List<GeneralTree<Integer>> children = arbol.getChildren();
-            Iterator<GeneralTree<Integer>> iter = children.iterator();
-            while (iter.hasNext() && !ok){
-                GeneralTree<Integer> child = iter.next();
-                ok = procesar(child, caminoActual, num);
-            }
-        }else if (!caminoActual.isEmpty()){
+        lista.add(arbol.getData());
+        if (arbol.isLeaf()){
             ok = true;
-            caminoActual.add(arbol.getData());
+        }else{
+            List<GeneralTree<Integer>> children = arbol.getChildren();
+            if (children.size() >= num){
+                Iterator<GeneralTree<Integer>> iter = children.iterator();
+                while (iter.hasNext() && !ok){
+                    GeneralTree<Integer> child = iter.next();
+                    ok = procesar(child, lista, num);
+                }
+            }
         }
         if (!ok){
-            caminoActual.remove(caminoActual.size()-1);
+            lista.remove(lista.size()-1);
         }
         return ok;
     }
