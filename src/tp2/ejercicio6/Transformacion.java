@@ -1,7 +1,6 @@
 package tp2.ejercicio6;
 
 import tp2.ejercicio2.BinaryTree;
-import tp2.ejercicio5.ProfundidadDeArbolBinario;
 
 public class Transformacion {
 	BinaryTree<Integer> ab;
