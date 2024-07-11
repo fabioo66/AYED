@@ -2,35 +2,31 @@ package parciales.arboles.parcial_promedioArbol;
 
 public class Objeto {
     private int suma;
-    private int cantidad;
+    private int cant;
 
-    public Objeto() {
+    public Objeto(){
         this.suma = 0;
-        this.cantidad = 0;
+        this.cant = 0;
     }
 
-    public void agregar(int valor) {
+    public void sumar(int valor){
         this.suma += valor;
-        this.cantidad++;
+        this.cant++;
     }
 
-    public int promedio() {
-        return this.suma / this.cantidad;
+    public int getSuma(){
+        return this.suma;
     }
 
-    public int getSuma() {
-        return suma;
+    public int getCant(){
+        return this.cant;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setSuma(int suma) {
-        this.suma = suma;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public int getPromedio(){
+        if (this.cant == 0){
+            return 0;
+        }else{
+            return this.suma / this.cant;
+        }
     }
 }
